@@ -33,9 +33,9 @@ output_type monte_carlo::operator()(model& m, const precalculate& p, const igrid
 }
 
 bool metropolis_accept(fl old_f, fl new_f, fl temperature, rng& generator) {
-	std::cout<<"old_f:"<<old_f<<endl;
-	std::cout<<"new_f:"<<new_f<<endl;
-	std::cout<<"temperature:"<<temperature<<endl;
+	std::cout<<"old_f:"<<old_f<<std::endl;
+	std::cout<<"new_f:"<<new_f<<std::endl;
+	std::cout<<"temperature:"<<temperature<<std::endl;
 	if(new_f < old_f) return true;
 	const fl acceptance_probability = std::exp((old_f - new_f) / temperature);
 	return random_fl(0, 1, generator) < acceptance_probability;
@@ -48,25 +48,25 @@ void monte_carlo::single_run(model& m, output_type& out, const precalculate& p, 
 	vec authentic_v(1000, 1000, 1000);
 	out.e = max_fl;
 	output_type current(out);
-	sst::cout<<"ssd_par.print()"<<endl;
+	sst::cout<<"ssd_par.print()"<<std::endl;
 	ssd_par.print()
 	minimization_params minparms = ssd_par.minparm;
 	if(minparms.maxiters == 0)
 		minparms.maxiters = ssd_par.evals;
 
-	std::cout<<"minparams.maxiters:"<<minparams.maxiters<<endl;
+	std::cout<<"minparams.maxiters:"<<minparams.maxiters<<std::endl;
 		
 	quasi_newton quasi_newton_par(minparms);
 	
-	std::cout"single monte carlo VINA_U_FOR step num_steps:"<<step<<" "<<num_steps<<endl;
+	std::cout"single monte carlo VINA_U_FOR step num_steps:"<<step<<" "<<num_steps<<std::endl;
 	
 	VINA_U_FOR(step, num_steps) {
 		output_type candidate(current.c, max_fl);
 		mutate_conf(candidate.c, m, mutation_amplitude, generator);
 		
-		std::cout<<"candidate.c"<<candidate.c<<endl;
+		std::cout<<"candidate.c"<<candidate.c<<std::endl;
 		candidate.c.print();
-		std::cout<<"mutation aplitude"<<mutation_amplitude<<endl;
+		std::cout<<"mutation aplitude"<<mutation_amplitude<<std::endl;
 			
 		quasi_newton_par(m, p, ig, candidate, g, hunt_cap, user_grid);
 		if(step == 0 || metropolis_accept(current.e, candidate.e, temperature, generator)) {
@@ -83,7 +83,7 @@ void monte_carlo::many_runs(model& m, output_container& out, const precalculate&
 	conf_size s = m.get_size();
 	
 	VINA_FOR(run, num_runs) {
-		std:cout<<"monte carlo many runs run,num_runs"<<run<<" "<<num_runs<<endl;
+		std:cout<<"monte carlo many runs run,num_runs"<<run<<" "<<num_runs<<std::endl;
 		output_type tmp(s, 0);
 		tmp.c.randomize(corner1, corner2, generator);
 		single_run(m, tmp, p, ig, generator, user_grid);
