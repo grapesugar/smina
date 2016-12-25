@@ -79,6 +79,7 @@ struct user_settings
 	}
 };
 
+// determine how the outputs are written
 void doing(int verbosity, const std::string& str, tee& log)
 {
 	if (verbosity > 1)
@@ -96,6 +97,8 @@ void done(int verbosity, tee& log)
 		log.endl();
 	}
 }
+
+// append _pdbbqt to the name of the output file by default
 std::string default_output(const std::string& input_name)
 {
 	std::string tmp = input_name;
@@ -103,6 +106,8 @@ std::string default_output(const std::string& input_name)
 		tmp.resize(tmp.size() - 6); // FIXME?
 	return tmp + "_out.pdbqt";
 }
+
+
 
 void write_all_output(model& m, const output_container& out, sz how_many,
 		std::ostream& outstream)
@@ -403,6 +408,11 @@ void main_procedure(model& m, precalculate& prec,
 		const weighted_terms& wt, tee& log,
 		std::vector<result_info>& results, grid& user_grid)
 {
+
+	// TODO
+	m.print_stuff();
+	
+	
 	doing(settings.verbosity, "Setting up the scoring function", log);
 
 	done(settings.verbosity, log);
