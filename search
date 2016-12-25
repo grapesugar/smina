@@ -212,13 +212,25 @@ void do_search(model& m, const boost::optional<model>& ref,
 		const terms *t, grid& user_grid, std::vector<result_info>& results)
 {
 	boost::timer time;
-
+	// visualize corner
+	std::cout<< "corner1:" <<endl;
+	corner1.print(std::cout);
+	std::cout<< "corner2:" <<endl;
+	corner2.print(std::cout);
+	
+	
 	precalculate_exact exact_prec(sf); //use exact computations for final score
 	conf_size s = m.get_size();
 	conf c = m.get_initial_conf();
+	// visualize conformation
+	std::cout<<"c"<<endl;
+	c.print()
 	fl e = max_fl;
+	std::cout<<"e:"<<e<<endl;
 	fl rmsd = 0;
 	const vec authentic_v(settings.forcecap, settings.forcecap, settings.forcecap); //small cap restricts initial movement from clash
+	std::cout<<"settings.forcecap"<<settings.forcecap<<endl;
+	
 	if (settings.score_only)
 	{
 		fl intramolecular_energy = m.eval_intramolecular(exact_prec,
@@ -307,6 +319,7 @@ void do_search(model& m, const boost::optional<model>& ref,
 		log.endl();
 		output_container out_cont;
 		doing(settings.verbosity, "Performing search", log);
+		// par
 		par(m, out_cont, prec, ig, corner1, corner2, generator, user_grid);
 		done(settings.verbosity, log);
 		doing(settings.verbosity, "Refining results", log);
@@ -410,7 +423,7 @@ void main_procedure(model& m, precalculate& prec,
 {
 
 	// TODO
-	m.print_stuff();
+	//m.print_stuff();
 	
 	
 	doing(settings.verbosity, "Setting up the scoring function", log);
