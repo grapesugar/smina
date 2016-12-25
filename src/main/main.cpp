@@ -108,7 +108,7 @@ std::string default_output(const std::string& input_name)
 }
 
 
-
+// write all models to disk (check m.write for more info)
 void write_all_output(model& m, const output_container& out, sz how_many,
 		std::ostream& outstream)
 {
@@ -314,12 +314,20 @@ void do_search(model& m, const boost::optional<model>& ref,
 	}
 	else
 	{
+		std::cout<< "main do_search starts" <<endl;
+		
 		rng generator(static_cast<rng::result_type>(settings.seed));
 		log << "Using random seed: " << settings.seed;
+		
+		std::cout<<"main do_search random seed:"<<settings.seed<<endl;
 		log.endl();
+		
 		output_container out_cont;
 		doing(settings.verbosity, "Performing search", log);
-		// par
+		
+		std::cout<<"starting par"<<endl;
+		//std::cout<<
+		
 		par(m, out_cont, prec, ig, corner1, corner2, generator, user_grid);
 		done(settings.verbosity, log);
 		doing(settings.verbosity, "Refining results", log);
