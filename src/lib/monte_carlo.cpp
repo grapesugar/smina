@@ -43,24 +43,24 @@ bool metropolis_accept(fl old_f, fl new_f, fl temperature, rng& generator) {
 
 void monte_carlo::single_run(model& m, output_type& out, const precalculate& p, const igrid& ig, rng& generator, grid& user_grid) const {
 	conf_size s = m.get_size();
-	std::cout<<"m.get_size"()<<m.get.size()
+	//std::cout<<"m.get_size"<<m.get_size()<<std::endl;
 	change g(s);
 	vec authentic_v(1000, 1000, 1000);
 	out.e = max_fl;
 	output_type current(out);
-	sst::cout<<"ssd_par.print()"<<std::endl;
-	ssd_par.print()
+	std::cout<<"ssd_par.print()"<<std::endl;
+	ssd_par.print();
 	minimization_params minparms = ssd_par.minparm;
 	if(minparms.maxiters == 0)
 		minparms.maxiters = ssd_par.evals;
 
-	std::cout<<"minparams.maxiters:"<<minparams.maxiters<<std::endl;
+	std::cout<<"minparams.maxiters:"<<minparms.maxiters<<std::endl;
 		
 	quasi_newton quasi_newton_par(minparms);
 	
-	std::cout"single monte carlo VINA_U_FOR step num_steps:"<<step<<" "<<num_steps<<std::endl;
 	
 	VINA_U_FOR(step, num_steps) {
+		std::cout<<"single monte carlo VINA_U_FOR step num_steps:"<<step<<" "<<num_steps<<std::endl;
 		output_type candidate(current.c, max_fl);
 		mutate_conf(candidate.c, m, mutation_amplitude, generator);
 		
