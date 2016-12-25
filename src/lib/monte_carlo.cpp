@@ -64,7 +64,7 @@ void monte_carlo::single_run(model& m, output_type& out, const precalculate& p, 
 		output_type candidate(current.c, max_fl);
 		mutate_conf(candidate.c, m, mutation_amplitude, generator);
 		
-		std::cout<<"candidate.c"<<candidate.c<<std::endl;
+		std::cout<<"candidate.c"<<std::endl;
 		candidate.c.print();
 		std::cout<<"mutation aplitude"<<mutation_amplitude<<std::endl;
 			
@@ -83,7 +83,7 @@ void monte_carlo::many_runs(model& m, output_container& out, const precalculate&
 	conf_size s = m.get_size();
 	
 	VINA_FOR(run, num_runs) {
-		std:cout<<"monte carlo many runs run,num_runs"<<run<<" "<<num_runs<<std::endl;
+		std::cout<<"monte carlo many runs run,num_runs"<<run<<" "<<num_runs<<std::endl;
 		output_type tmp(s, 0);
 		tmp.c.randomize(corner1, corner2, generator);
 		single_run(m, tmp, p, ig, generator, user_grid);
