@@ -314,18 +314,18 @@ void do_search(model& m, const boost::optional<model>& ref,
 	}
 	else
 	{
-		std::cout<< "main do_search starts" <<endl;
+		std::cout<< "main do_search starts" <<std::endl;
 		
 		rng generator(static_cast<rng::result_type>(settings.seed));
 		log << "Using random seed: " << settings.seed;
 		
-		std::cout<<"main do_search random seed:"<<settings.seed<<endl;
+		std::cout<<"main do_search random seed:"<<settings.seed<<std::endl;
 		log.endl();
 		
 		output_container out_cont;
 		doing(settings.verbosity, "Performing search", log);
 		
-		std::cout<<"starting par"<<endl;
+		std::cout<<"starting par"<<std::endl;
 		//std::cout<<
 		
 		par(m, out_cont, prec, ig, corner1, corner2, generator, user_grid);
