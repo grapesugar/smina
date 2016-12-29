@@ -94,7 +94,7 @@ void done(int verbosity, tee& log)
 	if (verbosity > 1)
 	{
 		log << "done.";
-		log.();
+		log.endl();
 	}
 }
 
@@ -213,17 +213,17 @@ void do_search(model& m, const boost::optional<model>& ref,
 {
 	boost::timer time;
 	// visualize corner
-	//std::cout<< "corner1:" <<std::endl;
-	//corner1.print(std::cout);
-	//std::cout<< "corner2:" <<std::endl;
-	//corner2.print(std::cout);
+	std::cout<< "corner1:" <<std::endl;
+	corner1.print(std::cout);
+	std::cout<< "corner2:" <<std::endl;
+	corner2.print(std::cout);
 	
 	
 	precalculate_exact exact_prec(sf); //use exact computations for final score
 	conf_size s = m.get_size();
 	conf c = m.get_initial_conf();
 	// visualize conformation
-	std::cout<<"c"<<endl;
+	std::cout<<"c"<<std::endl;
 	//c.print();
 	fl e = max_fl;
 	//std::cout<<"e:"<<e<<endl;
