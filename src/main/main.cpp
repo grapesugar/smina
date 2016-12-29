@@ -229,7 +229,7 @@ void do_search(model& m, const boost::optional<model>& ref,
 	//std::cout<<"e:"<<e<<endl;
 	fl rmsd = 0;
 	const vec authentic_v(settings.forcecap, settings.forcecap, settings.forcecap); //small cap restricts initial movement from clash
-	std::cout<<"settings.forcecap"<<settings.forcecap<<endl;
+	std::cout<<"settings.forcecap"<<settings.forcecap<<std::endl;
 	
 	if (settings.score_only)
 	{
